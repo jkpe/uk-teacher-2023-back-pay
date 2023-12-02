@@ -25,3 +25,7 @@ ul {
     list-style-type: none; /* Removes bullet points */
     padding-left: 0;      /* Removes indentation */
 }
+
+.explanation, .detailed-explanation {
+    text-align: left;
+}
