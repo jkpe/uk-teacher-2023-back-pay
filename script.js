@@ -30,11 +30,36 @@ document.getElementById("payCalculator").addEventListener("submit", function(eve
 });
 
 function calculateTax(income) {
-    // Tax calculation logic here (same as previous example)
+    const personalAllowance = 12570;
+    const basicRateUpperLimit = 50270;
+    const higherRateUpperLimit = 150000;
+    let tax = 0;
+
+    if (income <= personalAllowance) {
+        tax = 0;
+    } else if (income <= basicRateUpperLimit) {
+        tax = (income - personalAllowance) * 0.20;
+    } else if (income <= higherRateUpperLimit) {
+        tax = (basicRateUpperLimit - personalAllowance) * 0.20 + (income - basicRateUpperLimit) * 0.40;
+    } else {
+        tax = (basicRateUpperLimit - personalAllowance) * 0.20 + (higherRateUpperLimit - basicRateUpperLimit) * 0.40 + (income - higherRateUpperLimit) * 0.45;
+    }
+
+    return tax;
 }
 
 function calculateStudentLoanRepayment(income, plan) {
-    // Student loan repayment logic here (same as previous example)
+    let repayment = 0;
+    const plan1Threshold = 20195 / 12; // Monthly threshold for Plan 1
+    const plan2Threshold = 27295 / 12; // Monthly threshold for Plan 2
+
+    if (plan === "plan1" && income > plan1Threshold) {
+        repayment = (income - plan1Threshold) * 0.09;
+    } else if (plan === "plan2" && income > plan2Threshold) {
+        repayment = (income - plan2Threshold) * 0.09;
+    }
+
+    return repayment;
 }
 
 function calculatePensionContribution(annualSalary) {
