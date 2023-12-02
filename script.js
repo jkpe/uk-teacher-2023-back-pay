@@ -15,12 +15,17 @@ document.getElementById("salaryCalculator").addEventListener("submit", function(
     // Calculate taxes, student loan, pension, and NI for original and new salary
     const originalDeductions = calculateDeductions(grossSalary, studentLoanPlan, 3);
     const newDeductions = calculateDeductions(newAnnualSalary, studentLoanPlan, 3);
+    const monthlyDeductions = calculateDeductions(newAnnualSalary, studentLoanPlan, 1);
     
     const netBackDatedPay = backDatedPayGross - (newDeductions - originalDeductions);
 
+    const netMonthlySalary = newMonthlySalary - monthlyDeductions;
+
+
     document.getElementById("results").innerHTML = `
-        <p>Your new annual gross salary as of December 2023 is: £${newAnnualSalary.toFixed(2)}</p>
-        <p>Your net back-dated pay for the 6.5% rise over 3 months is: £${netBackDatedPay.toFixed(2)}</p>
+        <p>Your new annual gross salary as of December 2023 is: £${newAnnualSalary.toFixed(0)}</p>
+        <p>Your new net monthly take-home pay is: £${netMonthlySalary.toFixed(0)}</p>
+        <p>Your net back-dated pay for the 6.5% rise over 3 months is: £${netBackDatedPay.toFixed(0)}</p>
     `;
 });
 
