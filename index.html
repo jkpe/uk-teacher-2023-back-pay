@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher's Back-dated Pay Calculator</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Teacher's Back-dated Pay Calculator</h1>
+        <form id="payCalculator">
+            <label for="currentSalary">Enter your current salary (£):</label>
+            <input type="number" id="currentSalary" required>
+
+            <label for="studentLoan">Select your student loan plan:</label>
+            <select id="studentLoan">
+                <option value="none">No Student Loan</option>
+                <option value="plan1">Plan 1</option>
+                <option value="plan2">Plan 2</option>
+                <!-- Add more options if needed -->
+            </select>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
