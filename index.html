@@ -2,36 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Teacher's Back-dated Pay Calculator</title>
+    <title>Teacher's Salary Calculator</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
 </head>
 <body>
     <div class="container">
-        <h1>Teacher's Back-dated Pay Calculator</h1>
+        <h1>Teacher's Salary Calculator</h1>
+        <p>Enter your gross salary as of September 2023 to calculate your net take-home pay and the effect of the 6.5% pay rise.</p>
 
-        <p>This calculator helps UK teachers estimate their back-dated pay due to a recent pay rise. It considers the following:</p>
-        <ul>
-            <li><strong>Student Loan Repayments:</strong> Deductions based on the selected student loan plan.</li>
-            <li><strong>Pension Contributions:</strong> Calculated according to your annual salary and relevant pension contribution rates.</li>
-            <li><strong>Net Payment:</strong> The final amount is your net back-dated pay after considering taxes, student loan repayments, and pension contributions.</li>
-        </ul>
-
-        <form id="payCalculator">
-            <label for="currentSalary">Enter your current salary (£):</label>
-            <input type="number" id="currentSalary" required>
+        <form id="salaryCalculator">
+            <label for="grossSalary">Enter your gross salary (£):</label>
+            <input type="number" id="grossSalary" required>
 
             <label for="studentLoan">Select your student loan plan:</label>
             <select id="studentLoan">
                 <option value="none">No Student Loan</option>
                 <option value="plan1">Plan 1</option>
                 <option value="plan2">Plan 2</option>
-                <!-- Add more options if needed -->
             </select>
 
             <button type="submit">Calculate</button>
         </form>
 
-        <div id="result"></div>
+        <div id="results"></div>
     </div>
 
     <script src="script.js"></script> <!-- Link to JavaScript file -->
