@@ -12,7 +12,7 @@ document.getElementById("salaryCalculator").addEventListener("submit", function(
     // Calculate the back-dated pay for 3 months
     const backDatedPayGross = (newMonthlySalary * 3) - (monthlySalary * 3);
 
-    // Calculate taxes, student loan, and pension for original and new salary
+    // Calculate taxes, student loan, pension, and NI for original and new salary
     const originalDeductions = calculateDeductions(grossSalary, studentLoanPlan, 3);
     const newDeductions = calculateDeductions(newAnnualSalary, studentLoanPlan, 3);
     
@@ -28,8 +28,9 @@ function calculateDeductions(annualSalary, studentLoanPlan, months) {
     const tax = calculateTax(annualSalary) / 12 * months;
     const studentLoanRepayment = calculateStudentLoanRepayment(annualSalary / 12, studentLoanPlan) * months;
     const pensionContribution = calculatePensionContribution(annualSalary) / 12 * months;
+    const nationalInsurance = calculateNationalInsurance(annualSalary) / 12 * months;
 
-    return tax + studentLoanRepayment + pensionContribution;
+    return tax + studentLoanRepayment + pensionContribution + nationalInsurance;
 }
 
 function calculateTax(annualSalary) {
@@ -86,4 +87,21 @@ function calculatePensionContribution(annualSalary) {
     }
 
     return annualSalary * pension_rate;
+}
+
+function calculateNationalInsurance(annualSalary) {
+    const ni_lower_threshold = 12570;
+    const ni_upper_threshold = 50270;
+    const ni_lower_rate = 0.12;
+    const ni_upper_rate = 0.02;
+
+    let niContribution = 0;
+    if (annualSalary > ni_lower_threshold) {
+        if (annualSalary <= ni_upper_threshold) {
+            niContribution = (annualSalary - ni_lower_threshold) * ni_lower_rate;
+        } else {
+            niContribution = ((ni_upper_threshold - ni_lower_threshold) * ni_lower_rate) + ((annualSalary - ni_upper_threshold) * ni_upper_rate);
+        }
+    }
+    return niContribution;
 }
