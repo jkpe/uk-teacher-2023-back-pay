@@ -49,18 +49,19 @@ function calculateTax(income) {
 }
 
 function calculateStudentLoanRepayment(income, plan) {
-    let repayment = 0;
-    const plan1Threshold = 20195 / 12; // Monthly threshold for Plan 1
+    const plan1Threshold = 22015 / 12; // Monthly threshold for Plan 1
     const plan2Threshold = 27295 / 12; // Monthly threshold for Plan 2
+    let repayment = 0;
 
-    if (plan === "plan1" && income > plan1Threshold) {
-        repayment = (income - plan1Threshold) * 0.09;
-    } else if (plan === "plan2" && income > plan2Threshold) {
-        repayment = (income - plan2Threshold) * 0.09;
+    if (plan === "plan1") {
+        repayment = income > plan1Threshold ? (income - plan1Threshold) * 0.09 : 0;
+    } else if (plan === "plan2") {
+        repayment = income > plan2Threshold ? (income - plan2Threshold) * 0.09 : 0;
     }
 
-    return repayment;
+    return repayment * 3; // Repayment for 3 months (back-dated pay)
 }
+
 
 function calculatePensionContribution(annualSalary) {
     let contributionRate;
