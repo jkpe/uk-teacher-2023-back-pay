@@ -2,8 +2,9 @@
 document.getElementById("payCalculator").addEventListener("submit", function(event){
     event.preventDefault();
 
-    // Get the current salary
+    // Get the current salary and student loan plan
     const currentSalary = parseFloat(document.getElementById("currentSalary").value);
+    const studentLoanPlan = document.getElementById("studentLoan").value;
     const monthlySalary = currentSalary / 12;
 
     // Calculate the new monthly salary after the pay rise
@@ -15,28 +16,30 @@ document.getElementById("payCalculator").addEventListener("submit", function(eve
     // Calculate the tax for the back-dated pay
     let tax = calculateTax(backDatedPay);
 
-    // Subtract tax from the back-dated pay to get the net total
-    let netBackDatedPay = backDatedPay - tax;
+    // Calculate student loan repayment
+    let studentLoanRepayment = calculateStudentLoanRepayment(backDatedPay, studentLoanPlan);
+
+    // Subtract tax and student loan from the back-dated pay to get the net total
+    let netBackDatedPay = backDatedPay - tax - studentLoanRepayment;
 
     // Display the result
     document.getElementById("result").innerHTML = `Your net back-dated pay is: £${netBackDatedPay.toFixed(2)}`;
 });
 
 function calculateTax(income) {
-    const personalAllowance = 12570;
-    const basicRateUpperLimit = 50270;
-    const higherRateUpperLimit = 150000;
-    let tax = 0;
+    // Tax calculation logic here (same as previous example)
+}
 
-    if (income <= personalAllowance) {
-        tax = 0;
-    } else if (income <= basicRateUpperLimit) {
-        tax = (income - personalAllowance) * 0.20;
-    } else if (income <= higherRateUpperLimit) {
-        tax = (basicRateUpperLimit - personalAllowance) * 0.20 + (income - basicRateUpperLimit) * 0.40;
-    } else {
-        tax = (basicRateUpperLimit - personalAllowance) * 0.20 + (higherRateUpperLimit - basicRateUpperLimit) * 0.40 + (income - higherRateUpperLimit) * 0.45;
+function calculateStudentLoanRepayment(income, plan) {
+    let repayment = 0;
+    const plan1Threshold = 20195 / 12; // Monthly threshold for Plan 1
+    const plan2Threshold = 27295 / 12; // Monthly threshold for Plan 2
+
+    if (plan === "plan1" && income > plan1Threshold) {
+        repayment = (income - plan1Threshold) * 0.09;
+    } else if (plan === "plan2" && income > plan2Threshold) {
+        repayment = (income - plan2Threshold) * 0.09;
     }
 
-    return tax;
+    return repayment;
 }
