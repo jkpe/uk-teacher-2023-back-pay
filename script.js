@@ -10,8 +10,8 @@ document.getElementById("payCalculator").addEventListener("submit", function(eve
     // Calculate the new monthly salary after the pay rise
     const newMonthlySalary = monthlySalary * 1.065;
 
-    // Calculate back-dated pay (2 months)
-    let backDatedPay = (newMonthlySalary * 2) - (monthlySalary * 2);
+    // Calculate back-dated pay (3 months)
+    let backDatedPay = (newMonthlySalary * 3) - (monthlySalary * 3);
 
     // Calculate the tax for the back-dated pay
     let tax = calculateTax(backDatedPay);
