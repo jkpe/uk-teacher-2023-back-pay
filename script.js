@@ -30,15 +30,16 @@ document.getElementById("salaryCalculator").addEventListener("submit", function(
 });
 
 function calculateDeductions(annualSalary, studentLoanPlan, months) {
-    const tax = calculateTax(annualSalary) / 12 * months;
-    const studentLoanRepayment = calculateStudentLoanRepayment(annualSalary / 12, studentLoanPlan) * months;
     const pensionContribution = calculatePensionContribution(annualSalary) / 12 * months;
+    const tax = calculateTax(annualSalary, pensionContribution) / 12 * months;
+    const studentLoanRepayment = calculateStudentLoanRepayment(annualSalary / 12, studentLoanPlan) * months;
     const nationalInsurance = calculateNationalInsurance(annualSalary) / 12 * months;
 
     return tax + studentLoanRepayment + pensionContribution + nationalInsurance;
 }
 
-function calculateTax(annualSalary) {
+
+function calculateTax(annualSalary, pensionContribution) {
     const personal_allowance = 12570;
     const basic_rate_upper_limit = 50270;
     const higher_rate_upper_limit = 150000;
@@ -46,15 +47,19 @@ function calculateTax(annualSalary) {
     const higher_rate = 0.40;
     const additional_rate = 0.45;
 
+    // Deduct pension contribution before calculating tax
+    const taxableIncome = annualSalary - pensionContribution;
+
     let tax = 0;
-    if (annualSalary <= personal_allowance) {
+
+    if (taxableIncome <= personal_allowance) {
         tax = 0;
-    } else if (annualSalary <= basic_rate_upper_limit) {
-        tax = (annualSalary - personal_allowance) * basic_rate;
-    } else if (annualSalary <= higher_rate_upper_limit) {
-        tax = ((basic_rate_upper_limit - personal_allowance) * basic_rate) + ((annualSalary - basic_rate_upper_limit) * higher_rate);
+    } else if (taxableIncome <= basic_rate_upper_limit) {
+        tax = (taxableIncome - personal_allowance) * basic_rate;
+    } else if (taxableIncome <= higher_rate_upper_limit) {
+        tax = ((basic_rate_upper_limit - personal_allowance) * basic_rate) + ((taxableIncome - basic_rate_upper_limit) * higher_rate);
     } else {
-        tax = ((basic_rate_upper_limit - personal_allowance) * basic_rate) + ((higher_rate_upper_limit - basic_rate_upper_limit) * higher_rate) + ((annualSalary - higher_rate_upper_limit) * additional_rate);
+        tax = ((basic_rate_upper_limit - personal_allowance) * basic_rate) + ((higher_rate_upper_limit - basic_rate_upper_limit) * higher_rate) + ((taxableIncome - higher_rate_upper_limit) * additional_rate);
     }
 
     return tax;
