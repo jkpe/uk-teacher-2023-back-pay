@@ -23,6 +23,10 @@ The JavaScript handles the core functionality:
 - **Calculation Logic**: Functions to calculate tax, student loan repayments, pension contributions, and national insurance.
 - **Event Handling**: Code to handle form submission and display the calculation results.
 
+## Collaboration with AI
+- **Code Development**: The project's code was developed with the assistance of ChatGPT, an AI language model by OpenAI.
+- **Git Commit Messages**: All commit messages in the repository were crafted using GitHub Copilot.
+
 ## Usage
 To use the calculator, input your current gross salary and select your student loan plan. The calculator will display your new gross salary with the 6.5% rise, the net monthly take-home pay, and the net back-dated pay.
 
