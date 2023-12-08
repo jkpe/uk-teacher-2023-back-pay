@@ -38,7 +38,6 @@ function calculateDeductions(annualSalary, studentLoanPlan, months) {
     return tax + studentLoanRepayment + pensionContribution + nationalInsurance;
 }
 
-
 function calculateTax(annualSalary, pensionContribution) {
     const personal_allowance = 12570;
     const basic_rate_upper_limit = 50270;
@@ -47,8 +46,8 @@ function calculateTax(annualSalary, pensionContribution) {
     const higher_rate = 0.40;
     const additional_rate = 0.45;
 
-    // Deduct pension contribution before calculating tax
-    const taxableIncome = annualSalary - pensionContribution;
+    // Deduct 12 months of pension contribution before calculating tax
+    const taxableIncome = annualSalary - (pensionContribution * 12);
 
     let tax = 0;
 
