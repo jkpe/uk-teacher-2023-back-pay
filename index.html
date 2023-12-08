@@ -43,8 +43,8 @@
             <p>The calculator considers the following factors to provide an estimate of your net take-home pay:</p>
             <ul class="no-bullets">
                 <li><strong>Student Loan Repayments:</strong> Deductions based on your selected student loan plan. Plan 1 and Plan 2 have different thresholds and repayment rates.</li>
-                <li><strong>Pension Contributions:</strong> Calculated according to your annual salary. The rate of contribution varies depending on your salary band.</li>
-                <li><strong>Tax:</strong> Income tax is calculated based on current UK tax bands and personal allowance thresholds.</li>
+                <li><strong>Pension Contributions:</strong> Calculated according to your annual salary. The rate of contribution varies depending on your salary band. These contributions are deducted from your annual salary before calculating tax.</li>
+                <li><strong>Tax:</strong> Income tax is calculated based on current UK tax bands and personal allowance thresholds, after deducting pension contributions.</li>
                 <li><strong>National Insurance:</strong> Contributions are calculated on your gross salary above the tax-free allowance, with different rates applied to different salary bands.</li>
             </ul>
         </div>
@@ -55,10 +55,11 @@
 
             <h3>Tax Calculation</h3>
             <ul>
+                <li>Pension Contributions: Deducted from your annual salary before calculating tax.</li>
                 <li>Personal Allowance: Up to £12,570 is tax-free.</li>
-                <li>Basic Rate: 20% tax on income between £12,571 and £50,270.</li>
-                <li>Higher Rate: 40% tax on income between £50,271 and £150,000.</li>
-                <li>Additional Rate: 45% tax on income over £150,000.</li>
+                <li>Basic Rate: 20% tax on income between £12,571 and £50,270, after deducting pension contributions.</li>
+                <li>Higher Rate: 40% tax on income between £50,271 and £150,000, after deducting pension contributions.</li>
+                <li>Additional Rate: 45% tax on income over £150,000, after deducting pension contributions.</li>
             </ul>
 
             <h3>Student Loan Repayments</h3>
@@ -83,19 +84,8 @@
                 <li>Salary £92,698 and above: 11.7% contribution rate.</li>
             </ul>
         </div>
-
-        <hr>
-
-        <div class="changelog">
-            <h2>Changelog</h2>
-            <ul>
-                <!-- List of changes -->
-                <li>Version 1.0: Initial release.</li>
-            </ul>
-        </div>
     </div>
 
     <script src="script.js"></script> <!-- Link to JavaScript file -->
 </body>
-</html>
 </html>
