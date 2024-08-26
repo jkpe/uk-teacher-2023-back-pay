@@ -5,7 +5,7 @@ document.getElementById("salaryCalculator").addEventListener("submit", function(
     const grossSalary = parseFloat(document.getElementById("grossSalary").value);
     const studentLoanPlan = document.getElementById("studentLoan").value;
 
-    const newAnnualSalary = grossSalary * 1.065; // 6.5% rise
+    const newAnnualSalary = grossSalary * 1.105; // 6.5% rise
     const monthlySalary = grossSalary / 12;
     const newMonthlySalary = newAnnualSalary / 12;
 
